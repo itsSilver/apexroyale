@@ -45,6 +45,5 @@ watchEffect(() => {
         {{ t('button.back') }}
       </button>
     </div>
-    <v-wrapper />
   </div>
 </template>

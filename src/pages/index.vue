@@ -54,6 +54,12 @@ const { t } = useI18n()
       >
         {{ t('button.go') }}
       </button>
+      <button
+        btn m-3 text-sm
+        @click="router.push(`/casino`)"
+      >
+        Apex
+      </button>
     </div>
   </div>
 </template>
