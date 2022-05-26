@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isDark, preferredDark } from '~/composables'
+import { isDark } from '~/composables'
 const { t } = useI18n()
 
 useHead({
@@ -14,8 +14,8 @@ useHead({
   link: [
     {
       rel: 'icon',
-      type: 'image/svg+xml',
-      href: computed(() => preferredDark.value ? '/favicon-dark.svg' : '/favicon.svg'),
+      href: '/favicon.ico',
+      sizes: 'any',
     },
   ],
 })

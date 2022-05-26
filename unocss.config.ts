@@ -48,6 +48,8 @@ export default defineConfig({
       cyan: '#34e7e4',
       cyanHover: '#64fdf9',
       textDark: '#090c0f',
+      ghost: '#E9E9E9',
+      bright: '#F8F8F8',
     },
   },
 })
