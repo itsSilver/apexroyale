@@ -8,11 +8,20 @@ defineProps({
     type: String,
     default: 'h4',
   },
+  class: {
+    type: String,
+    default: '',
+  },
+
 })
 </script>
 
 <template>
-  <component :is="type" class="text-gray-700 dark:text-gray-200">
-    {{ text }}
+  <component :is="$props.type" class="title-component" :class="$props.class">
+    {{ $props.text }}
   </component>
 </template>
+
+<style scoped>
+
+</style>
