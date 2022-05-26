@@ -14,5 +14,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas ref="mainWrapper" class="h-screen w-full" />
+  <canvas class="h-screen w-full" />
 </template>
