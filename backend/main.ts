@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser'
 import routes from './routes'
 import log from './logger'
 import connect from './db/connect'
-
+import deserializeUser from './middleware/deserializeUser'
 dotenv.config()
 
 const app: Express = express()
@@ -15,7 +15,7 @@ const port = process.env.PORT
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-
+app.use(deserializeUser)
 app.use(
   cors({
     credentials: true,
