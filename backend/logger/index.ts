@@ -1,5 +1,5 @@
-import logger from "pino";
-import dayjs from "dayjs";
+import logger from 'pino'
+import dayjs from 'dayjs'
 
 const log = logger({
   transport: {
@@ -9,9 +9,9 @@ const log = logger({
     }
   },
   base: {
-    pid: false,
+    pid: false
   },
-  timestamp: () => `,"time":"${dayjs().format()}"`,
-});
+  timestamp: () => `,"time":"${dayjs().format()}"`
+})
 
-export default log;
+export default log

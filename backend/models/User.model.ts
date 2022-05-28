@@ -1,66 +1,64 @@
-import mongoose from "mongoose";
-import bcrypt from "bcrypt";
-import dotenv from "dotenv";
-import log from "../logger";
-dotenv.config();
+import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
+import dotenv from 'dotenv'
+import log from '../logger'
+dotenv.config()
 
 export interface UserDocument extends mongoose.Document {
-  email: string;
-  name: string;
-  password: string;
-  createdAt: Date;
-  updatedAt: Date;
-  comparePassword(candidatePassword: string): Promise<boolean>;
+  email: string
+  username: string
+  password: string
+  createdAt?: Date
+  updatedAt?: Date
 }
-
 
 const UserSchema = new mongoose.Schema(
   {
     email: {
       type: String,
       required: true,
-      unique: true,
+      unique: true
     },
     username: {
       type: String,
-      required: true,
+      required: true
     },
     password: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   {
-    timestamps: true,
+    timestamps: true
   }
-);
+)
 
-UserSchema.pre("save", async function (next) {
-  let user = this as UserDocument;
+UserSchema.pre('save', async function (next) {
+  let user = this as UserDocument
 
   // only hash the password if it has been modified (or is new)
-  if (!user.isModified("password")) return next();
+  if (!user.isModified('password')) return next()
 
   // Random additional data
-  const salt = await bcrypt.genSalt(10);
+  const salt = await bcrypt.genSalt(10)
 
-  const hash = await bcrypt.hashSync(user.password, salt);
+  const hash = await bcrypt.hashSync(user.password, salt)
 
   // Replace the password with the hash
-  user.password = hash;
+  user.password = hash
 
-  return next();
-});
+  return next()
+})
 
 // Used for logging in
 UserSchema.methods.comparePassword = async function (
   candidatePassword: string
 ) {
-  const user = this as UserDocument;
+  const user = this as UserDocument
 
-  return bcrypt.compare(candidatePassword, user.password).catch((e) => false);
-};
+  return bcrypt.compare(candidatePassword, user.password).catch((e) => false)
+}
 
-const User = mongoose.model<UserDocument>("User", UserSchema);
+const User = mongoose.model<UserDocument>('User', UserSchema)
 
-export default User;
+export default User
