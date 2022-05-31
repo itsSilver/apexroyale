@@ -1,5 +1,4 @@
 import logger from 'pino'
-import dayjs from 'dayjs'
 
 const log = logger({
   transport: {
@@ -11,7 +10,7 @@ const log = logger({
   base: {
     pid: false
   },
-  timestamp: () => `,"time":"${dayjs().format()}"`
+  timestamp: () => `,"time":"${new Date().toLocaleString()}"`
 })
 
 export default log
