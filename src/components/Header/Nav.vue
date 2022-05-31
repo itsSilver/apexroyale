@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { NButton, NDropdown } from 'naive-ui'
-import { api } from '~/composables'
+import { NButton, NDropdown, NModal } from 'naive-ui'
+
 const options = [
   {
     label: 'Marina Bay Sands',
@@ -19,10 +19,27 @@ const options = [
     label: 'The Beverly Hills Hotel, Los Angeles',
     key: 'the beverly hills hotel, los angeles',
   },
+
 ]
+// const message = useMessage()
+
+const showModal = ref(false)
+// const cancelCallback = () => {
+//   message.info(
+//     'I don\'t know why nobody told you how to unfold your love',
+//     {
+//       closable: true,
+//       duration: 5000,
+//     },
+//   )
+// }
+// const submitCallback = () => {
+//   message.success('Submit')
+// }
+
 const handleSelect = (key: string | number) => {
   // message.info(String(key))
-  console.log('sosa clicked', api)
+  showModal.value = true
 }
 </script>
 
@@ -35,4 +52,15 @@ const handleSelect = (key: string | number) => {
       </n-button>
     </n-dropdown>
   </div>
+  <n-button @click="showModal = true">
+    Start Me up
+  </n-button>
+  <n-modal
+    v-model:show="showModal"
+    preset="dialog"
+    title="Dialog"
+    content="Are you sure?"
+    positive-text="Submit"
+    negative-text="Cancel"
+  />
 </template>
