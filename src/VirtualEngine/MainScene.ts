@@ -8,6 +8,7 @@ import type {
 import {
 
   ArcRotateCamera,
+
   Color3,
   Color4,
   DirectionalLight,
@@ -16,6 +17,7 @@ import {
   MeshBuilder,
   Scene,
   SceneLoader,
+
   Vector3,
 } from 'babylonjs'
 

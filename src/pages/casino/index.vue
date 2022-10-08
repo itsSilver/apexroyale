@@ -10,7 +10,10 @@ useHead({
 </script>
 
 <template>
-  <v-wrapper />
+  <!-- <v-wrapper /> -->
+  <div>
+    sosa
+  </div>
 </template>
 
 <route lang="yaml">

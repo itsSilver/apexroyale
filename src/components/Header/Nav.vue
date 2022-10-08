@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NButton, NDropdown, NModal } from 'naive-ui'
+import { NButton, NDropdown } from 'naive-ui'
 
 const options = [
   {
@@ -23,7 +23,7 @@ const options = [
 ]
 // const message = useMessage()
 
-const showModal = ref(false)
+const showModal = ref(true)
 // const cancelCallback = () => {
 //   message.info(
 //     'I don\'t know why nobody told you how to unfold your love',
@@ -36,7 +36,14 @@ const showModal = ref(false)
 // const submitCallback = () => {
 //   message.success('Submit')
 // }
-
+const showM = () => {
+  showModal.value = true
+}
+const closeModal = () => {
+  console.log('modal close')
+  showModal.value = false
+  console.log('showModal.value', showModal.value)
+}
 const handleSelect = (key: string | number) => {
   // message.info(String(key))
   showModal.value = true
@@ -47,20 +54,14 @@ const handleSelect = (key: string | number) => {
   <div class="flex justify-around items-center">
     <Branding />
     <n-dropdown trigger="hover" :options="options" @select="handleSelect">
-      <n-button class="px-4 text-xl py-4 h-10 bg-cyan border-0 border-transparent">
+      <n-button>
         Go For a Trip
       </n-button>
     </n-dropdown>
+    <n-button type="success" @click="showM">
+      Start Me up
+    </n-button>
   </div>
-  <n-button @click="showModal = true">
-    Start Me up
-  </n-button>
-  <n-modal
-    v-model:show="showModal"
-    preset="dialog"
-    title="Dialog"
-    content="Are you sure?"
-    positive-text="Submit"
-    negative-text="Cancel"
-  />
+
+  <Modal :show-modal="showModal" title="sho modal" @close-modal="closeModal" />
 </template>
